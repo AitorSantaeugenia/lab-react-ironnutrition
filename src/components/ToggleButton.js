@@ -1,7 +1,7 @@
 //imports from antd
 import { Divider, Input } from 'antd';
 
-function SearchFood({ searchInput, searchFoodFilter }) {
+function ToggleButton({ searchInput, searchFoodFilter }) {
 	return (
 		<div className="parentDivSearch">
 			<Divider>
@@ -22,4 +22,4 @@ function SearchFood({ searchInput, searchFoodFilter }) {
 	);
 }
 
-export default SearchFood;
+export default ToggleButton;

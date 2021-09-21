@@ -1,7 +1,7 @@
 // src/App.js
 import './App.css';
 // To start using the pre-made Ant Design components we must first import them:
-import { Row, Divider } from 'antd';
+import { Row, Divider, Button } from 'antd';
 //import JSON foods
 import foods from './foods.json';
 // Use State
@@ -10,6 +10,7 @@ import { useState } from 'react';
 import FoodBox from './components/FoodBox.js';
 import AddFoodForm from './components/AddFoodForm.js';
 import SearchFood from './components/SearchFood.js';
+import NoFood from './components/NoFood.js';
 
 //wooper -> https://gps.burgerkingencasa.es/images/products/1575468049898_Menu_Whopper.png
 // TO-DO
@@ -23,6 +24,8 @@ function App() {
 	const [ searchInput, setSearchInput ] = useState('');
 	//copy food to deleteFood
 	const foodDataCopy = [ ...foodData ];
+	//Toggle buttons
+	const [ showFoodData, setShowFoodData ] = useState(false);
 
 	//Functions to implement
 	//Function ADD NEW FOOD
@@ -56,19 +59,38 @@ function App() {
 		setFoodData(foodToDelete);
 	};
 
+	//Function Toggle
+	const toggleShowMovies = () => {
+		setShowFoodData(!showFoodData);
+	};
+
+	//use this for no food
+	//console.log(foodDataCopy.length);
+
 	return (
 		<div className="App">
-			<AddFoodForm food={foodData} addFood={addNewFood} />
+			<Button type="default" className="buttonHideShow" onClick={toggleShowMovies}>
+				{showFoodData ? 'Hide form' : 'Add new food'}
+			</Button>
+			{showFoodData ? (
+				<div>
+					<AddFoodForm food={foodData} addFood={addNewFood} />
+				</div>
+			) : null}
 			<SearchFood searchInput={searchInput} searchFoodFilter={searchFoodFilter} />
 			<Divider>
 				<h1>Food list</h1>
 			</Divider>
-			<Row>
-				{foodData.map((food) => {
-					//Pasamos todo el objeto food en lugar de uno por uno
-					return <FoodBox food={food} key={food.name} deleteFood={deleteFood} />;
-				})}
-			</Row>
+			{foodDataCopy.length !== 0 ? (
+				<Row>
+					{foodData.map((food) => {
+						//Pasamos todo el objeto food en lugar de uno por uno
+						return <FoodBox food={food} key={food.name} deleteFood={deleteFood} />;
+					})}
+				</Row>
+			) : (
+				<NoFood />
+			)}
 		</div>
 	);
 }
