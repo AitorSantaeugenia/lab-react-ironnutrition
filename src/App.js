@@ -10,17 +10,30 @@ import { useState } from 'react';
 import FoodBox from './components/FoodBox.js';
 import AddFoodForm from './components/AddFoodForm.js';
 
+//wooper -> https://gps.burgerkingencasa.es/images/products/1575468049898_Menu_Whopper.png
+
 function App() {
-	const [ food ] = useState(foods);
+	//const [ food ] = useState(foods);
+	const [ foodData, setFoodData ] = useState(foods);
+	const [ formDataInfo, setFormDataInfoState ] = useState(foods);
+
+	//Functions to implement
+	const addNewFood = (newFood) => {
+		const updatedMoviesData = [ ...foodData, newFood ];
+		const updatedMovies = [ ...formDataInfo, newFood ];
+
+		setFoodData(updatedMoviesData);
+		setFormDataInfoState(updatedMovies);
+	};
 	//console.log(food);
 	return (
 		<div className="App">
 			<Divider>
 				<h1>Food List</h1>
 			</Divider>
-			<AddFoodForm food={food} />
+			<AddFoodForm food={foodData} addFood={addNewFood} />
 			<Row>
-				{food.map((food) => {
+				{foodData.map((food) => {
 					//Pasamos todo el objeto food en lugar de uno por uno
 					return <FoodBox food={food} key={food.name} />;
 				})}
