@@ -10,9 +10,7 @@ function FoodBox({ food }) {
 				<p>
 					Servings: <span className="boldText">{food.servings}</span>
 				</p>
-				<p className="boldText">
-					Total calories: {food.calories} * {food.servings}
-				</p>
+				<p className="boldText">Total calories: {food.calories * food.servings}</p>
 				<Button type="primary"> Delete </Button>
 			</Card>
 		</Col>
