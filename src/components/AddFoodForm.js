@@ -27,29 +27,32 @@ function AddFoodForm(props) {
 
 		// Reset the state
 		setName('');
-		setCalories('');
+		setCalories(0);
 		setImage('');
 		setServings(0);
 	};
 
 	return (
-		<form className="formAddFoodForm" onSubmit={submitFormInfo}>
-			<Divider>Add Food Entry</Divider>
+		<div className="parentDivForm">
+			<Divider>
+				<h1>Add food entry</h1>
+			</Divider>
+			<form className="formAddFoodForm" onSubmit={submitFormInfo}>
+				<label className="boldText">Name</label>
+				<Input value={name} type="text" onChange={handleNameInput} />
 
-			<label className="boldText">Name</label>
-			<Input value={name} type="text" onChange={handleNameInput} />
+				<label className="boldText">Image</label>
+				<Input value={image} type="text" onChange={handleImageInput} />
 
-			<label className="boldText">Image</label>
-			<Input value={image} type="text" onChange={handleImageInput} />
+				<label className="boldText">Calories</label>
+				<Input value={calories} type="number" onChange={handleCaloriesInput} />
 
-			<label className="boldText">Calories</label>
-			<Input value={calories} type="number" onChange={handleCaloriesInput} />
+				<label className="boldText">Servings</label>
+				<Input value={servings} type="number" onChange={handleServingsInput} />
 
-			<label className="boldText">Servings</label>
-			<Input value={servings} type="number" onChange={handleServingsInput} />
-
-			<button type="submit">Create</button>
-		</form>
+				<button type="submit">Create</button>
+			</form>
+		</div>
 	);
 }
 

@@ -11,23 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-.boldText{
-  font-weight: bold;
-}
-
-.formAddFoodForm{
-  width: 50%;
-  margin:0 auto;
-  border:1px solid black;
-  border-radius: 10px;
-  display:flex;
-  flex-direction: column;
-  padding:20px;
-  background-color:rgb(226, 223, 223);
-  margin-bottom: 50px;
-}
-
-.formAddFoodForm button{
-  margin-top:30px;
-}

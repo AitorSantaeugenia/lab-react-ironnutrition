@@ -1,7 +1,7 @@
 //imports from antd
 import { Card, Col, Button, Image } from 'antd';
 
-function FoodBox({ food }) {
+function FoodBox({ food, deleteFood }) {
 	return (
 		<Col>
 			<Card title={food.name} style={{ width: 230, height: 350, margin: 10 }}>
@@ -11,7 +11,10 @@ function FoodBox({ food }) {
 					Servings: <span className="boldText">{food.servings}</span>
 				</p>
 				<p className="boldText">Total calories: {food.calories * food.servings}</p>
-				<Button type="primary"> Delete </Button>
+				<Button type="primary" onClick={() => deleteFood(food.name)}>
+					{' '}
+					Delete{' '}
+				</Button>
 			</Card>
 		</Col>
 	);
