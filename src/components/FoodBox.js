@@ -4,7 +4,7 @@ import { Card, Col, Button, Image } from 'antd';
 function FoodBox({ food }) {
 	return (
 		<Col>
-			<Card title={food.name}>
+			<Card title={food.name} style={{ width: 230, height: 350, margin: 10 }}>
 				<Image src={food.image} width="150px" height="100px" />
 				<p>Calories: {food.calories}</p>
 				<p>
@@ -13,7 +13,7 @@ function FoodBox({ food }) {
 				<p className="boldText">
 					Total calories: {food.calories} * {food.servings}
 				</p>
-				<Button> Delete </Button>
+				<Button type="primary"> Delete </Button>
 			</Card>
 		</Col>
 	);
