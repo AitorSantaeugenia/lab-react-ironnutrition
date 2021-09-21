@@ -1,25 +1,37 @@
-import logo from './logo.svg';
+// src/App.js
 import './App.css';
+// To start using the pre-made Ant Design components we must first import them:
+import { Card, Row, Col, Divider, Input, Button, Image } from 'antd';
+//import JSON foods
+import foods from './foods.json';
+// Use State
+import { useState } from 'react';
+//components
+import FoodBox from './components/FoodBox.js';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [ food ] = useState(foods);
+	console.log(food);
+	return (
+		<div className="App">
+			<Divider>
+				<h1>Food List</h1>
+			</Divider>
+			<Row>
+				{food.map((food) => {
+					//Pasamos todo el objeto food en lugar de uno por uno
+					return (
+						<FoodBox
+							food={food}
+							// foodname={food.name}
+							// foodimage={food.image}
+							// foodcalories={food.calories}
+							// foodservings={food.servings}
+						/>
+					);
+				})}
+			</Row>
+		</div>
+	);
 }
-
 export default App;
