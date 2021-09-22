@@ -20,10 +20,14 @@ import NoFood from './components/NoFood.js';
 function App() {
 	// food and state
 	const [ foodData, setFoodData ] = useState(foods);
+	// For search
+	const [ filteredFoodData, setFilteredFoodData ] = useState(foodData);
 	//search results
 	const [ searchInput, setSearchInput ] = useState('');
 	//copy food to deleteFood
 	const foodDataCopy = [ ...foodData ];
+
+	//console.log(foodDataCopy);
 	//Toggle buttons
 	const [ showFoodData, setShowFoodData ] = useState(false);
 
@@ -32,6 +36,7 @@ function App() {
 	const addNewFood = (newFood) => {
 		const updatedFoodData = [ ...foodData, newFood ];
 		setFoodData(updatedFoodData);
+		setFilteredFoodData(updatedFoodData);
 	};
 
 	//Function SEARCH FOOD
@@ -39,16 +44,17 @@ function App() {
 		setSearchInput(e.target.value);
 
 		if (e.target.value === '') {
-			setFoodData(foods);
+			//console.log('hola');
+			setFilteredFoodData(foodData);
 		}
 		const textInputValue = e.target.value.toLowerCase();
 
-		const filteredList = foods.filter((food) => {
+		const filteredList = foodData.filter((food) => {
 			const foodIncludes = food.name.toLowerCase();
 			return foodIncludes.includes(textInputValue);
 		});
 
-		setFoodData(filteredList);
+		setFilteredFoodData(filteredList);
 	};
 
 	//Function DELETE
@@ -83,7 +89,7 @@ function App() {
 			</Divider>
 			{foodDataCopy.length !== 0 ? (
 				<Row>
-					{foodData.map((food) => {
+					{filteredFoodData.map((food) => {
 						//Pasamos todo el objeto food en lugar de uno por uno
 						return <FoodBox food={food} key={food.name} deleteFood={deleteFood} />;
 					})}
